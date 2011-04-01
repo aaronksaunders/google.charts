@@ -1,10 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-  <head>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
+
+<html >
+<head >
+<!--Load the AJAX API-->
+<script type = "text/javascript"src = "https://www.google.com/jsapi" > </script>
+    <script type="text/javascript ">
 
       var chart, data;
 
@@ -12,13 +11,13 @@
 	     data.setCell(0,1,v);
          chart.draw(data, {width: 320, height: 240, is3D: true, title: 'My Daily Activities'});
       }
-    
+
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1', {'packages':['corechart']});
-      
+
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawChart);
-      
+
       // Callback that creates and populates a data table, 
       // instantiates the pie chart, passes in the data and
       // draws it.
@@ -39,8 +38,14 @@
         // Instantiate and draw our chart, passing in some options.
         if ( chart == undefined ) { 
            chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        }
+        }	
+
         chart.draw(data, {width: 320, height: 240, is3D: true, title: 'My Daily Activities'});
+
+		google.visualization.events.addListener(chart, 'select', function(event){
+			Titanium.App.fireEvent("click_chart",{d: chart.getSelection()});			
+		});
+
       }
     </script>
   </head>

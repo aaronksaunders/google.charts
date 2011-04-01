@@ -43,3 +43,8 @@ tabGroup.addTab(tab1);
 
 // open tab group
 tabGroup.open();
+
+
+Ti.App.addEventListener("click_chart", function(e){
+	alert("row clicked was: " + JSON.stringify(e));
+});
